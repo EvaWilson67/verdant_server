@@ -16,7 +16,7 @@ let housePlants = [
       "id": 1,
       "name": "Snake Plant",
       "summary": "Snake plants are low-maintenance indoor plants with tall, upright leaves. They thrive in various lighting conditions and are known for purifying the air. Perfect for beginners, they require little attention.",
-      "link": "snakeplant.html",
+      "link": "/snakeplant",
       "image": "snakeplant.jpg",
       "section": "Easy"
     },
@@ -24,7 +24,7 @@ let housePlants = [
       "id": 2,
       "name": "Arrow-head",
       "summary": "The arrowhead plantis a fast-growing vine with arrow-shaped leaves (as one can guess) and varies in color. It thrives in moderate/indirect light and humidity, and is one of my favorites!",
-      "link": "arrowhead.html",
+      "link": "/arrowhead",
       "image": "arrowhead.jpg",
       "section": "Easy"
     },
@@ -32,7 +32,7 @@ let housePlants = [
       "id": 3,
       "name": "Golden Pythos",
       "summary": "Golden Pothos is a low-maintenance, vine with heart shaped glossy leaves that has yellow/golden variegation. It thrives in indirect light and can tolerate low light. I have a cutting from my grandmothers plant that is doing well!",
-      "link": "goldenpothos.html",
+      "link": "/goldenpothos",
       "image": "goldenpothos.jpg",
       "section": "Easy"
     },
@@ -40,7 +40,7 @@ let housePlants = [
       "id": 4,
       "name": "Swiss Cheese",
       "summary": "Tropical vine known for its unique, hole-punched leaves. It thrives in bright, indirect light but can still tolerate low light level conditions. It even enjoys humid conditions.",
-      "link": "swisscheese.html",
+      "link": "/swisscheese",
       "image": "swisscheese.jpg",
       "section": "Medium"
     },
@@ -48,7 +48,7 @@ let housePlants = [
       "id": 5,
       "name": "Peace Lily",
       "summary": "A popular indoor plant known for its glossy dark green leaves and elegant white flowers. It thrives in low to moderate light and requires only occasional watering. Add's humitity to that air.",
-      "link": "peacelily.html",
+      "link": "/peacelily",
       "image": "peacelily.jpg",
       "section": "Medium"
     },
@@ -56,7 +56,7 @@ let housePlants = [
       "id": 6,
       "name": "Parlor Palm",
       "summary": "Known to be an elegant indoor plant with feathery fronds and ability to thrine in low light conditions. It may be considered to be on the easier end, but due to it's size it sometimes requires more maintance than others.",
-      "link": "parlorpalm.html",
+      "link": "/parlorpalm",
       "image": "parlorpalm.jpg",
       "section": "Medium"
     },
@@ -64,7 +64,7 @@ let housePlants = [
       "id": 7,
       "name": "Bonsai Trees",
       "summary": "One of the harder to care for, stating from personal experience. They aren't genetically dwarf, and require egular pruning, proper watering, and providing the right environment to maintain its shape and health.",
-      "link": "bonsai.html",
+      "link": "/bonsai",
       "image": "bonsai-large.jpg",
       "section": "Hard"
     },
@@ -72,7 +72,7 @@ let housePlants = [
       "id": 8,
       "name": "Hoya",
       "summary": " A trailing vine with thick, waxy leaves. It can produce fragrant, star-shaped flowers. It thrives in bright, indirect light. The reason why I call it somewhat intermediate is only because it will flower under the right care.",
-      "link": "hoya.html",
+      "link": "/hoya",
       "image": "hoya.jpg",
       "section": "Hard"
     },
@@ -80,7 +80,7 @@ let housePlants = [
       "id": 9,
       "name": "Prayer plants",
       "summary": "Striking foliage, with vibrant patterns and the unique ability to fold its leaves at night, resembling hands in prayer. It thrives in indirect light and prefers high humidity, making it ideal for indoor spaces with consistent moisture",
-      "link": "prayerplant.html",
+      "link": "/prayerplant",
       "image": "prayerplant.jpg",
       "section": "Hard"
     }
@@ -210,21 +210,21 @@ let garden=[
       "image": "squash.jpg",
       "name": "Kabocha",
       "type":"Vegetable",
-      "link":"Kabocha.html"
+      "link":"/Kabocha"
   },
   {
       "id":2,
       "image": "eggplant.jpg",
       "name": "Eggplant",
       "type":"Vegetable",
-      "link":"eggplant.html"
+      "link":"/eggplant"
   },
   {
       "id":3,
       "image": "corn.jpg",
       "name": "Corn",
       "type":"Vegetable",
-      "link":"corn.html"
+      "link":"/corn"
 
   },
   {
@@ -232,63 +232,63 @@ let garden=[
       "image": "peaches.jpg",
       "name": "Peaches",
       "type":"Fruit",
-      "link":"peaches.html"
+      "link":"/peaches"
   },
   {
       "id":5,
       "image": "blackberry.jpg",
       "name": "Blackberry",
       "type":"Fruit",
-      "link":"blackberry.html"
+      "link":"/blackberry"
   },
   {
       "id":6,
       "image": "blueberries.jpg",
       "name": "Blueberries",
       "type":"Fruit",
-      "link":"blueberries.html"
+      "link":"/blueberries"
   },
   {
       "id":7,
       "image": "dill.jpg",
       "name": "Dill",
       "type":"Herb",
-      "link":"dill.html"
+      "link":"/dill"
   },
   {
       "id":8,
       "image": "basil.jpg",
       "name": "Basil",
       "type":"Herb",
-      "link":"basil.html"
+      "link":"/basil"
   },
   {
       "id":9,
       "image": "mint.jpg",
       "name": "Mint",
       "type":"Herb",
-      "link":"mint.html"
+      "link":"/mint"
   },
   {
       "id":10,
       "image": "sunflower.jpg",
       "name": "Sunflower",
       "type":"Flower",
-      "link":"sunflower.html"
+      "link":"/sunflower"
   },
   {
       "id":11,
       "image": "carnations.jpg",
       "name": "Carnation",
       "type":"Flower",
-      "link":"carnation.html"
+      "link":"/carnation"
   },
   {
       "id":11,
       "image": "lavendar.jpg",
       "name": "Lavendar",
       "type":"Flower",
-      "link":"lavendar.html"
+      "link":"/lavendar"
   }
 ]
 app.get("/api/garden", (req, res)=>{
