@@ -295,6 +295,48 @@ app.get("/api/garden", (req, res)=>{
   res.send(garden);
 })
 
+let blog=[
+  {
+      "id":1,
+      "image": "cardinal.jpg",
+      "date":"11-10-2024",
+      "summary":"On my walk around campus I saw a cardinal!"
+  },
+  {
+      "id":2,
+      "image": "betty.jpg",
+      "date":"9-13-2024",
+      "summary":"I got Betty from my grandmother as a gift for my birthday."
+  },
+  {
+      "id":3,
+      "image": "greycatbird.jpg",
+      "date":"8-18-2020",
+      "summary":"On my way to the swearingen this grey cat bird followed me."
+  },
+  {
+      "id":4,
+      "image": "greenquad.jpg",
+      "date":"7-25-2024",
+      "summary":"My friend used to live in green quad, so I wanted to take a couple photos to remember."
+  },
+  {
+      "id":5,
+      "image": "boxturtle.jpg",
+      "date":"6-19-2024",
+      "summary":"I spotted a box turtle on my parents property"
+  },
+  {
+      "id":6,
+      "image": "charelstonart.jpg",
+      "date":"5-10-2024",
+      "summary":"I went on a trip with a friend to Charelston SC. We went to the local art museum"
+  }
+]
+app.get("/api/blog", (req, res)=>{
+  res.send(blog);
+})
+
 app.listen(3001, ()=>{
     console.log("I'm listening");
 
