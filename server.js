@@ -436,7 +436,7 @@ app.post("/api/blog", blogUpload.single("img"), (req, res) => {
   };
 
   if (req.file) {
-    blogs.image = "images/blog_images/" + req.file.filename;
+    blogs.image = "blog_images/" + req.file.filename;
   }
 
   blog.push(blogs);
