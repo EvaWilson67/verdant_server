@@ -425,9 +425,33 @@ const validateCare = (cares) => {
   return schema.validate(cares);
 };
 
+// app.post("/api/blog", blogUpload.single("img"), (req, res) => {
+//   const result = validateBlog(req.body);
+//   console.log("I made it");
+
+//   if (result.error) {
+//     console.log("I have an error");
+//     res.status(400).send(result.error.details[0].message);
+//     return;
+//   }
+
+//   const blogs = {
+//     _id: blogs.length,
+//     date: req.body.date,
+//     summary: req.body.summary,
+//   };
+
+//   if (req.file) {
+//     blogs.image = req.file.filename;
+//   }
+
+//   blog.push(blogs);
+//   res.status(200).send(blogs);
+// });
+
 app.post("/api/blog", blogUpload.single("img"), (req, res) => {
   const result = validateBlog(req.body);
-  // console.log("I made it");
+  console.log("I made it");
 
   if (result.error) {
     console.log("I have an error");
@@ -436,33 +460,28 @@ app.post("/api/blog", blogUpload.single("img"), (req, res) => {
   }
 
   const blogs = {
-    _id: care.length,
-    date: req.body.date,
+    _id: blog.length,
+    name: req.body.name,
     summary: req.body.summary,
-    
-
-    // size:req.body.size,
-    // bedrooms:req.body.bedrooms,
-    // bathrooms:req.body.bathrooms,
   };
 
   if (req.file) {
     blogs.image = req.file.filename;
   }
 
-  blog.push(blogs);
+  blog.push(blogs); // <-- pushing to the defined array
   res.status(200).send(blogs);
 });
 
 const validateBlog = (blogs) => {
   const schema = Joi.object({
     _id: Joi.allow(""),
-    date: Joi.string().min(5).required(),
+    name: Joi.string().min(3).required(),
     summary: Joi.string().min(3).required(),
-
   });
 
-  return schema.validate(cares);
+  console.log(schema.validate(blogs));
+  return schema.validate(blogs);
 };
 
 app.listen(3001, () => {
