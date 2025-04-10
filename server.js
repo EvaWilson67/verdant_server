@@ -10,26 +10,26 @@ app.use(cors());
 
 
 
-const careStorage = multer.diskStorage({
+// const careStorage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "./public/images/care_images/");
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, file.originalname);
+//   },
+// });
+// const careUpload = multer({ storage: careStorage });
+
+
+const blogStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./public/images/care_images/");
+    cb(null, "./public/images/blog_images/");
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname);
   },
 });
-const careUpload = multer({ storage: careStorage });
-
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "./public/images/");
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
-const upload = multer({ storage: storage });
+const blogUpload = multer({ storage: blogStorage });
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
@@ -419,7 +419,7 @@ app.get("/api/blog", (req, res) => {
 //   return schema.validate(cares);
 // };
 
-app.post("/api/blog", upload.single("img"), (req, res) => {
+app.post("/api/blog", blogUpload.single("img"), (req, res) => {
   const result = validateBlog(req.body);
   console.log("I made it");
 
@@ -436,7 +436,7 @@ app.post("/api/blog", upload.single("img"), (req, res) => {
   };
 
   if (req.file) {
-    blogs.image = "blog_images/" + req.file.filename;
+    blogs.image = req.file.filename;
   }
 
   blog.push(blogs);
