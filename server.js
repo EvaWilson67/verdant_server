@@ -21,15 +21,15 @@ const careStorage = multer.diskStorage({
 const careUpload = multer({ storage: careStorage });
 
 
-const blogStorage = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./public/images/blog_images/");
+    cb(null, "./public/images/");
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname);
   },
 });
-const blogUpload = multer({ storage: blogStorage });
+const upload = multer({ storage: storage });
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
@@ -381,45 +381,45 @@ app.get("/api/blog", (req, res) => {
   res.send(blog);
 });
 
-app.post("/api/care", careUpload.single("img"), (req, res) => {
-  const result = validateCare(req.body);
-  console.log("I made it");
+// app.post("/api/care", careUpload.single("img"), (req, res) => {
+//   const result = validateCare(req.body);
+//   console.log("I made it");
 
-  if (result.error) {
-    console.log("I have an error");
-    res.status(400).send(result.error.details[0].message);
-    return;
-  }
+//   if (result.error) {
+//     console.log("I have an error");
+//     res.status(400).send(result.error.details[0].message);
+//     return;
+//   }
 
-  const cares = {
-    _id: care.length,
-    name: req.body.name,
-    summary: req.body.summary,
-    imageFirst: req.body.imageFirst,
-  };
+//   const cares = {
+//     _id: care.length,
+//     name: req.body.name,
+//     summary: req.body.summary,
+//     imageFirst: req.body.imageFirst,
+//   };
 
-  if (req.file) {
-    cares.image = req.file.filename;
-  }
+//   if (req.file) {
+//     cares.image = req.file.filename;
+//   }
 
-  console.log(schema.validate(cares));
+//   console.log(schema.validate(cares));
 
-  care.push(cares);
-  res.status(200).send(cares);
-});
+//   care.push(cares);
+//   res.status(200).send(cares);
+// });
 
-const validateCare = (cares) => {
-  const schema = Joi.object({
-    _id: Joi.allow(""),
-    name: Joi.string().min(3).required(),
-    summary: Joi.string().min(3).required(),
-    imageFirst: Joi.string(),
-  });
+// const validateCare = (cares) => {
+//   const schema = Joi.object({
+//     _id: Joi.allow(""),
+//     name: Joi.string().min(3).required(),
+//     summary: Joi.string().min(3).required(),
+//     imageFirst: Joi.string(),
+//   });
 
-  return schema.validate(cares);
-};
+//   return schema.validate(cares);
+// };
 
-app.post("/api/blog", blogUpload.single("img"), (req, res) => {
+app.post("/api/blog", upload.single("img"), (req, res) => {
   const result = validateBlog(req.body);
   console.log("I made it");
 
