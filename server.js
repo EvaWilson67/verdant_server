@@ -410,6 +410,8 @@ app.post("/api/care", careUpload.single("img"), (req, res) => {
     cares.image = req.file.filename;
   }
 
+  console.log(schema.validate(cares));
+
   care.push(cares);
   res.status(200).send(cares);
 });
@@ -469,7 +471,7 @@ app.post("/api/blog", blogUpload.single("img"), (req, res) => {
     blogs.image = req.file.filename;
   }
 
-  blog.push(blogs); // <-- pushing to the defined array
+  blog.push(blogs);
   res.status(200).send(blogs);
 });
 
