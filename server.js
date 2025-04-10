@@ -8,15 +8,7 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(cors());
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "./public/images/");
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
-const upload = multer({ storage: storage });
+
 
 const careStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -444,7 +436,7 @@ app.post("/api/blog", blogUpload.single("img"), (req, res) => {
   };
 
   if (req.file) {
-    blogs.image = req.file.filename;
+    blogs.image = "images/blog_images/" + req.file.filename;
   }
 
   blog.push(blogs);
