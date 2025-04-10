@@ -391,6 +391,7 @@ app.get("/api/blog", (req, res) => {
 
 app.post("/api/care", careUpload.single("img"), (req, res) => {
   const result = validateCare(req.body);
+  console.log("I made it");
 
   if (result.error) {
     console.log("I have an error");
@@ -403,10 +404,6 @@ app.post("/api/care", careUpload.single("img"), (req, res) => {
     name: req.body.name,
     summary: req.body.summary,
     imageFirst: req.body.imageFirst,
-
-    // size:req.body.size,
-    // bedrooms:req.body.bedrooms,
-    // bathrooms:req.body.bathrooms,
   };
 
   if (req.file) {
@@ -429,7 +426,7 @@ const validateCare = (cares) => {
 };
 
 app.post("/api/blog", blogUpload.single("img"), (req, res) => {
-  const result = validateCare(req.body);
+  const result = validateBlog(req.body);
   // console.log("I made it");
 
   if (result.error) {
