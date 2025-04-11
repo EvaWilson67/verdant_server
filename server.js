@@ -8,8 +8,6 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(cors());
 
-
-
 // const careStorage = multer.diskStorage({
 //   destination: (req, file, cb) => {
 //     cb(null, "./public/images/care_images/");
@@ -19,7 +17,6 @@ app.use(cors());
 //   },
 // });
 // const careUpload = multer({ storage: careStorage });
-
 
 const blogStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -429,9 +426,16 @@ app.post("/api/blog", blogUpload.single("img"), (req, res) => {
     return;
   }
 
+  const formatDate = (isoDateStr) => {
+    const [year, month, day] = isoDateStr.split("-");
+    return `${month}-${day}-${year}`;
+  };
+
+  const formattedDate = formatDate(req.body.date);
+
   const blogs = {
     _id: blog.length,
-    date: req.body.date,
+    date: formattedDate,
     summary: req.body.summary,
   };
 
