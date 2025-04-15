@@ -454,18 +454,24 @@ app.put("/api/blogs/:id", blogUpload.single("img"), (req, res) => {
     res.status(404).send("The blog with the provided id was not found");
     return;
   }
-  console.log("I found the thing, but for some reason it's not going through");
   const result = validateBlog(req.body);
   if (result.error) {
     res.status(400).send(result.error.details[0].message);
     return;
   }
 
-  blog.date = req.body.date;
+  const formatDate = (isoDateStr) => {
+    const [year, month, day] = isoDateStr.split("-");
+    return `${month}-${day}-${year}`;
+  };
+
+  const formattedDate = formatDate(req.body.date);
+
+  blog.date = formattedDate;
   blog.summary = req.body.summary;
 
   if (req.file) {
-    blog.main_image = req.file.filename;
+    blog.image = req.file.filename;
   }
 
   res.status(200).send(blog);
