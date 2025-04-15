@@ -334,7 +334,7 @@ app.get("/api/garden", (req, res) => {
   res.send(garden);
 });
 
-let blog = [
+let blogs = [
   {
     id: 1,
     image: "cardinal.jpg",
@@ -374,8 +374,8 @@ let blog = [
       "I went on a trip with a friend to Charelston SC. We went to the local art museum",
   },
 ];
-app.get("/api/blog", (req, res) => {
-  res.send(blog);
+app.get("/api/blogs", (req, res) => {
+  res.send(blogs);
 });
 
 // app.post("/api/care", careUpload.single("img"), (req, res) => {
@@ -416,7 +416,7 @@ app.get("/api/blog", (req, res) => {
 //   return schema.validate(cares);
 // };
 
-app.post("/api/blog", blogUpload.single("img"), (req, res) => {
+app.post("/api/blogs", blogUpload.single("img"), (req, res) => {
   const result = validateBlog(req.body);
   console.log("I made it");
 
@@ -433,18 +433,60 @@ app.post("/api/blog", blogUpload.single("img"), (req, res) => {
 
   const formattedDate = formatDate(req.body.date);
 
-  const blogs = {
-    _id: blog.length,
+  const blog = {
+    id: blogs.length + 1,
     date: formattedDate,
     summary: req.body.summary,
   };
 
   if (req.file) {
-    blogs.image = req.file.filename;
+    blog.image = req.file.filename;
   }
 
-  blog.push(blogs);
-  res.status(200).send(blogs);
+  blogs.push(blog);
+  res.status(200).send(blog);
+});
+
+app.put("/api/blogs/:id", blogUpload.single("img"), (req, res) => {
+  const blog = blogs.find((blog) => blog.id === parseInt(req.params.id));
+
+  if (!blog) {
+    res.status(404).send("The blog with the provided id was not found");
+    return;
+  }
+  console.log("I found the thing, but for some reason it's not going through");
+  const result = validateBlog(req.body);
+  if (result.error) {
+    res.status(400).send(result.error.details[0].message);
+    return;
+  }
+
+  blog.date = req.body.date;
+  blog.summary = req.body.summary;
+
+  if (req.file) {
+    blog.main_image = req.file.filename;
+  }
+
+  res.status(200).send(blog);
+});
+
+app.delete("/api/blogs/:id", blogUpload.single("img"), (req, res) => {
+  console.log("I'm trying to delete" + req.params.id);
+  const blog = blogs.find((blog) => blog.id === parseInt(req.params.id));
+  console.log("made it to here...");
+
+
+  if (!blog) {
+    console.log("Oh no i wasn't found");
+    res.status(404).send("The house with the provided id was not found");
+    return;
+  }
+  console.log("YAY You found me");
+  console.log("The blog you are deleting is " + blog.date);
+  const index = blogs.indexOf(blog);
+  blogs.splice(index, 1);
+  res.status(200).send(blog);
 });
 
 const validateBlog = (blogs) => {
