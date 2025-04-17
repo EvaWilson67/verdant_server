@@ -34,7 +34,7 @@ app.get("/", (req, res) => {
 
 let housePlants = [
   {
-    id: 1,
+    _id: 1,
     name: "Snake Plant",
     summary:
       "Snake plants are low-maintenance indoor plants with tall, upright leaves. They thrive in various lighting conditions and are known for purifying the air. Perfect for beginners, they require little attention.",
@@ -43,7 +43,7 @@ let housePlants = [
     section: "Easy",
   },
   {
-    id: 2,
+    _id: 2,
     name: "Arrow-head",
     summary:
       "The arrowhead plantis a fast-growing vine with arrow-shaped leaves (as one can guess) and varies in color. It thrives in moderate/indirect light and humidity, and is one of my favorites!",
@@ -52,7 +52,7 @@ let housePlants = [
     section: "Easy",
   },
   {
-    id: 3,
+    _id: 3,
     name: "Golden Pythos",
     summary:
       "Golden Pothos is a low-maintenance, vine with heart shaped glossy leaves that has yellow/golden variegation. It thrives in indirect light and can tolerate low light. I have a cutting from my grandmothers plant that is doing well!",
@@ -61,7 +61,7 @@ let housePlants = [
     section: "Easy",
   },
   {
-    id: 4,
+    _id: 4,
     name: "Swiss Cheese",
     summary:
       "Tropical vine known for its unique, hole-punched leaves. It thrives in bright, indirect light but can still tolerate low light level conditions. It even enjoys humid conditions.",
@@ -70,7 +70,7 @@ let housePlants = [
     section: "Medium",
   },
   {
-    id: 5,
+    _id: 5,
     name: "Peace Lily",
     summary:
       "A popular indoor plant known for its glossy dark green leaves and elegant white flowers. It thrives in low to moderate light and requires only occasional watering. Add's humitity to that air.",
@@ -79,7 +79,7 @@ let housePlants = [
     section: "Medium",
   },
   {
-    id: 6,
+    _id: 6,
     name: "Parlor Palm",
     summary:
       "Known to be an elegant indoor plant with feathery fronds and ability to thrine in low light conditions. It may be considered to be on the easier end, but due to it's size it sometimes requires more maintance than others.",
@@ -88,7 +88,7 @@ let housePlants = [
     section: "Medium",
   },
   {
-    id: 7,
+    _id: 7,
     name: "Bonsai Trees",
     summary:
       "One of the harder to care for, stating from personal experience. They aren't genetically dwarf, and require egular pruning, proper watering, and providing the right environment to maintain its shape and health.",
@@ -97,7 +97,7 @@ let housePlants = [
     section: "Hard",
   },
   {
-    id: 8,
+    _id: 8,
     name: "Hoya",
     summary:
       " A trailing vine with thick, waxy leaves. It can produce fragrant, star-shaped flowers. It thrives in bright, indirect light. The reason why I call it somewhat intermediate is only because it will flower under the right care.",
@@ -106,7 +106,7 @@ let housePlants = [
     section: "Hard",
   },
   {
-    id: 9,
+    _id: 9,
     name: "Prayer plants",
     summary:
       "Striking foliage, with vibrant patterns and the unique ability to fold its leaves at night, resembling hands in prayer. It thrives in indirect light and prefers high humidity, making it ideal for indoor spaces with consistent moisture",
@@ -121,7 +121,7 @@ app.get("/api/housePlants", (req, res) => {
 
 let resources = [
   {
-    id: 1,
+    _id: 1,
     name: "houseplantjournal",
     image: "houseplantjournal.png",
     summary:
@@ -130,7 +130,7 @@ let resources = [
     type: "website",
   },
   {
-    id: 2,
+    _id: 2,
     name: "janeperrone",
     image: "janeperrone.png",
     summary: "A great plant blog that has it's own podcast.",
@@ -138,7 +138,7 @@ let resources = [
     type: "website",
   },
   {
-    id: 3,
+    _id: 3,
     name: "thehouseplantguru",
     image: "houseplantguru.png",
     summary:
@@ -147,7 +147,7 @@ let resources = [
     type: "website",
   },
   {
-    id: 4,
+    _id: 4,
     name: "How Not to Kill Your Houseplant",
     image: "howtonotkillyourhouseplant.png",
     summary:
@@ -156,7 +156,7 @@ let resources = [
     type: "book",
   },
   {
-    id: 5,
+    _id: 5,
     name: "The New Plant Parent",
     image: "newplantparent.png",
     summary:
@@ -165,7 +165,7 @@ let resources = [
     type: "book",
   },
   {
-    id: 6,
+    _id: 6,
     name: "The Garden Plant Encyclopedia",
     image: "gardenplantsencyclopedia.png",
     summary: "Says what the title is! All about gardens.",
@@ -173,7 +173,7 @@ let resources = [
     type: "book",
   },
   {
-    id: 7,
+    _id: 7,
     name: "The First Book of Plants",
     image: "firstbookofplants.png",
     summary:
@@ -182,7 +182,7 @@ let resources = [
     type: "book",
   },
   {
-    id: 8,
+    _id: 8,
     name: "The Secret World of Plants",
     image: "secretworldofplants.png",
     summary:
@@ -191,7 +191,7 @@ let resources = [
     type: "book",
   },
   {
-    id: 9,
+    _id: 9,
     name: "Plantopedia",
     image: "plantopedia.png",
     summary:
@@ -207,7 +207,7 @@ app.get("/api/resources", (req, res) => {
 
 let care = [
   {
-    id: 1,
+    _id: 1,
     imageFirst: "true",
     image: "lighting.jpg",
     name: "Lighting",
@@ -215,7 +215,7 @@ let care = [
       "Most indoor plants do well with bright, indirect light, where they get plenty of light without being exposed to harsh, direct sun. Some plants, like succulents and cacti, need direct sunlight, while others, like pythos and snake plants, are more adaptable to low-light conditions. Finding the right balance of light is important to avoid issues like leaf burn.",
   },
   {
-    id: 2,
+    _id: 2,
     imageFirst: "false",
     image: "watering.jpg",
     name: "Watering",
@@ -223,15 +223,15 @@ let care = [
       "Overwatering is a common mistake, so always check the soil before watering. Many plants prefer to dry out a bit between waterings—especially succulents and cacti, which need minimal water and thrive in drier conditions. For most indoor plants, water when the top inch of soil feels dry to the touch. Ensure your plant has drainage holes to allow excess water to escape and prevent root rot.",
   },
   {
-    id: 3,
+    _id: 3,
     imageFirst: "true",
-    image: "fertilizer.jpg",
+    image: "soil.jpg",
     name: "Fertilizer",
     summary:
       "During the active growing season (spring and summer), plants benefit from regular feeding, typically once a month, with a balanced, water-soluble fertilizer. This boosts their growth and helps them produce vibrant leaves and flowers. In contrast, plants require less fertilizer during the dormant period (fall and winter), as their growth slows down.",
   },
   {
-    id: 4,
+    _id: 4,
     imageFirst: "false",
     image: "repotting.jpg",
     name: "Repotting",
@@ -246,84 +246,84 @@ app.get("/api/care", (req, res) => {
 
 let garden = [
   {
-    id: 1,
+    __id: 1,
     image: "squash.jpg",
     name: "Kabocha",
     type: "Vegetable",
     link: "/Kabocha",
   },
   {
-    id: 2,
+    __id: 2,
     image: "eggplant.jpg",
     name: "Eggplant",
     type: "Vegetable",
     link: "/eggplant",
   },
   {
-    id: 3,
+    __id: 3,
     image: "corn.jpg",
     name: "Corn",
     type: "Vegetable",
     link: "/corn",
   },
   {
-    id: 4,
+    __id: 4,
     image: "peaches.jpg",
     name: "Peaches",
     type: "Fruit",
     link: "/peaches",
   },
   {
-    id: 5,
+    __id: 5,
     image: "blackberry.jpg",
     name: "Blackberry",
     type: "Fruit",
     link: "/blackberry",
   },
   {
-    id: 6,
+    __id: 6,
     image: "blueberries.jpg",
     name: "Blueberries",
     type: "Fruit",
     link: "/blueberries",
   },
   {
-    id: 7,
+    __id: 7,
     image: "dill.jpg",
     name: "Dill",
     type: "Herb",
     link: "/dill",
   },
   {
-    id: 8,
+    __id: 8,
     image: "basil.jpg",
     name: "Basil",
     type: "Herb",
     link: "/basil",
   },
   {
-    id: 9,
+    __id: 9,
     image: "mint.jpg",
     name: "Mint",
     type: "Herb",
     link: "/mint",
   },
   {
-    id: 10,
+    __id: 10,
     image: "sunflower.jpg",
     name: "Sunflower",
     type: "Flower",
     link: "/sunflower",
   },
   {
-    id: 11,
+    _id: 11,
     image: "carnations.jpg",
     name: "Carnation",
     type: "Flower",
     link: "/carnation",
   },
   {
-    id: 11,
+    _id: 11,
     image: "lavendar.jpg",
     name: "Lavendar",
     type: "Flower",
@@ -336,38 +336,38 @@ app.get("/api/garden", (req, res) => {
 
 let blogs = [
   {
-    _id: 1,
+    __id: 1,
     image: "cardinal.jpg",
     date: "11-10-2024",
     summary: "On my walk around campus I saw a cardinal!",
   },
   {
-    _id: 2,
+    __id: 2,
     image: "betty.jpg",
     date: "9-13-2024",
     summary: "I got Betty from my grandmother as a gift for my birthday.",
   },
   {
-    _id: 3,
+    __id: 3,
     image: "greycatbird.jpg",
     date: "8-18-2020",
     summary: "On my way to the swearingen this grey cat bird followed me.",
   },
   {
-    _id: 4,
+    __id: 4,
     image: "greenquad.jpg",
     date: "7-25-2024",
     summary:
       "My friend used to live in green quad, so I wanted to take a couple photos to remember.",
   },
   {
-    _id: 5,
+    __id: 5,
     image: "boxturtle.jpg",
     date: "6-19-2024",
     summary: "I spotted a box turtle on my parents property",
   },
   {
-    _id: 6,
+    __id: 6,
     image: "charelstonart.jpg",
     date: "5-10-2024",
     summary:
@@ -397,7 +397,7 @@ app.post("/api/blogs", blogUpload.single("img"), (req, res) => {
   const formattedDate = formatDate(req.body.date);
 
   const blog = {
-    _id: nextId++,
+    __id: nextId++,
     date: formattedDate,
     summary: req.body.summary,
   };
@@ -462,7 +462,7 @@ app.delete("/api/blogs/:_id", blogUpload.single("img"), (req, res) => {
 
 const validateBlog = (blogs) => {
   const schema = Joi.object({
-    _id: Joi.allow(""),
+    __id: Joi.allow(""),
     date: Joi.string().min(3).required(),
     summary: Joi.string().min(3).required(),
   });
