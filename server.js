@@ -246,70 +246,70 @@ app.get("/api/care", (req, res) => {
 
 let garden = [
   {
-    __id: 1,
+    _id: 1,
     image: "squash.jpg",
     name: "Kabocha",
     type: "Vegetable",
     link: "/Kabocha",
   },
   {
-    __id: 2,
+    _id: 2,
     image: "eggplant.jpg",
     name: "Eggplant",
     type: "Vegetable",
     link: "/eggplant",
   },
   {
-    __id: 3,
+    _id: 3,
     image: "corn.jpg",
     name: "Corn",
     type: "Vegetable",
     link: "/corn",
   },
   {
-    __id: 4,
+    _id: 4,
     image: "peaches.jpg",
     name: "Peaches",
     type: "Fruit",
     link: "/peaches",
   },
   {
-    __id: 5,
+    _id: 5,
     image: "blackberry.jpg",
     name: "Blackberry",
     type: "Fruit",
     link: "/blackberry",
   },
   {
-    __id: 6,
+    _id: 6,
     image: "blueberries.jpg",
     name: "Blueberries",
     type: "Fruit",
     link: "/blueberries",
   },
   {
-    __id: 7,
+    _id: 7,
     image: "dill.jpg",
     name: "Dill",
     type: "Herb",
     link: "/dill",
   },
   {
-    __id: 8,
+    _id: 8,
     image: "basil.jpg",
     name: "Basil",
     type: "Herb",
     link: "/basil",
   },
   {
-    __id: 9,
+    _id: 9,
     image: "mint.jpg",
     name: "Mint",
     type: "Herb",
     link: "/mint",
   },
   {
-    __id: 10,
+    _id: 10,
     image: "sunflower.jpg",
     name: "Sunflower",
     type: "Flower",
@@ -397,7 +397,7 @@ app.post("/api/blogs", blogUpload.single("img"), (req, res) => {
   const formattedDate = formatDate(req.body.date);
 
   const blog = {
-    __id: nextId++,
+    _id: nextId++,
     date: formattedDate,
     summary: req.body.summary,
   };
@@ -462,7 +462,7 @@ app.delete("/api/blogs/:_id", blogUpload.single("img"), (req, res) => {
 
 const validateBlog = (blogs) => {
   const schema = Joi.object({
-    __id: Joi.allow(""),
+    _id: Joi.allow(""),
     date: Joi.string().min(3).required(),
     summary: Joi.string().min(3).required(),
   });
