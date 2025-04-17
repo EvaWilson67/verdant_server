@@ -53,7 +53,7 @@ let housePlants = [
   },
   {
     _id: 3,
-    name: "Golden Pythos",
+    name: "Pythos",
     summary:
       "Golden Pothos is a low-maintenance, vine with heart shaped glossy leaves that has yellow/golden variegation. It thrives in indirect light and can tolerate low light. I have a cutting from my grandmothers plant that is doing well!",
     link: "/goldenpothos",
