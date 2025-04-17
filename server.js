@@ -336,38 +336,38 @@ app.get("/api/garden", (req, res) => {
 
 let blogs = [
   {
-    __id: 1,
+    _id: 1,
     image: "cardinal.jpg",
     date: "11-10-2024",
     summary: "On my walk around campus I saw a cardinal!",
   },
   {
-    __id: 2,
+    _id: 2,
     image: "betty.jpg",
     date: "9-13-2024",
     summary: "I got Betty from my grandmother as a gift for my birthday.",
   },
   {
-    __id: 3,
+    _id: 3,
     image: "greycatbird.jpg",
     date: "8-18-2020",
     summary: "On my way to the swearingen this grey cat bird followed me.",
   },
   {
-    __id: 4,
+    _id: 4,
     image: "greenquad.jpg",
     date: "7-25-2024",
     summary:
       "My friend used to live in green quad, so I wanted to take a couple photos to remember.",
   },
   {
-    __id: 5,
+    _id: 5,
     image: "boxturtle.jpg",
     date: "6-19-2024",
     summary: "I spotted a box turtle on my parents property",
   },
   {
-    __id: 6,
+    _id: 6,
     image: "charelstonart.jpg",
     date: "5-10-2024",
     summary:
