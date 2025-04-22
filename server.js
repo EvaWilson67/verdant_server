@@ -7,16 +7,7 @@ const app = express();
 app.use(express.static("public"));
 app.use(express.json());
 app.use(cors());
-
-// const careStorage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, "./public/images/care_images/");
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, file.originalname);
-//   },
-// });
-// const careUpload = multer({ storage: careStorage });
+const mongoose = require("mongoose");
 
 const blogStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -27,6 +18,24 @@ const blogStorage = multer.diskStorage({
   },
 });
 const blogUpload = multer({ storage: blogStorage });
+
+mongoose
+  .connect(
+    "mongodb+srv://ew67:purpleToadBowling908@mongodb.bxp6euu.mongodb.net/"
+  )
+  .then(() => {
+    console.log("connected to mongodb");
+  })
+  .catch((error) => {
+    console.log("couldn't connect to mongodb", error);
+  });
+const blogSchema = new mongoose.Schema({
+  date: String,
+  summary: String,
+  image: String
+});
+
+const Blog = mongoose.model("Blog", blogSchema);
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
@@ -334,52 +343,55 @@ app.get("/api/garden", (req, res) => {
   res.send(garden);
 });
 
-let blogs = [
-  {
-    _id: 1,
-    image: "cardinal.jpg",
-    date: "11-10-2024",
-    summary: "On my walk around campus I saw a cardinal!",
-  },
-  {
-    _id: 2,
-    image: "betty.jpg",
-    date: "9-13-2024",
-    summary: "I got Betty from my grandmother as a gift for my birthday.",
-  },
-  {
-    _id: 3,
-    image: "greycatbird.jpg",
-    date: "8-18-2020",
-    summary: "On my way to the swearingen this grey cat bird followed me.",
-  },
-  {
-    _id: 4,
-    image: "greenquad.jpg",
-    date: "7-25-2024",
-    summary:
-      "My friend used to live in green quad, so I wanted to take a couple photos to remember.",
-  },
-  {
-    _id: 5,
-    image: "boxturtle.jpg",
-    date: "6-19-2024",
-    summary: "I spotted a box turtle on my parents property",
-  },
-  {
-    _id: 6,
-    image: "charelstonart.jpg",
-    date: "5-10-2024",
-    summary:
-      "I went on a trip with a friend to Charelston SC. We went to the local art museum",
-  },
-];
-app.get("/api/blogs", (req, res) => {
+// let blogs = [
+//   {
+//     _id: 1,
+//     image: "cardinal.jpg",
+//     date: "11-10-2024",
+//     summary: "On my walk around campus I saw a cardinal!",
+//   },
+//   {
+//     _id: 2,
+//     image: "betty.jpg",
+//     date: "9-13-2024",
+//     summary: "I got Betty from my grandmother as a gift for my birthday.",
+//   },
+//   {
+//     _id: 3,
+//     image: "greycatbird.jpg",
+//     date: "8-18-2020",
+//     summary: "On my way to the swearingen this grey cat bird followed me.",
+//   },
+//   {
+//     _id: 4,
+//     image: "greenquad.jpg",
+//     date: "7-25-2024",
+//     summary:
+//       "My friend used to live in green quad, so I wanted to take a couple photos to remember.",
+//   },
+//   {
+//     _id: 5,
+//     image: "boxturtle.jpg",
+//     date: "6-19-2024",
+//     summary: "I spotted a box turtle on my parents property",
+//   },
+//   {
+//     _id: 6,
+//     image: "charelstonart.jpg",
+//     date: "5-10-2024",
+//     summary:
+//       "I went on a trip with a friend to Charelston SC. We went to the local art museum",
+//   },
+// ];
+
+app.get("/api/blogs", async (req, res) => {
+  const blogs = await Blog.find();
+  // console.log(blogs);
   res.send(blogs);
 });
 
-let nextId = blogs.length+1;
-app.post("/api/blogs", blogUpload.single("img"), (req, res) => {
+// let nextId = 7;
+app.post("/api/blogs", blogUpload.single("img"), async (req, res) => {
   const result = validateBlog(req.body);
   console.log("I made it");
 
@@ -396,33 +408,35 @@ app.post("/api/blogs", blogUpload.single("img"), (req, res) => {
 
   const formattedDate = formatDate(req.body.date);
 
-  const blog = {
-    _id: nextId++,
+  const blog = new Blog({
+    // _id: nextId++,
     date: formattedDate,
     summary: req.body.summary,
-  };
+  });
 
   if (req.file) {
     blog.image = req.file.filename;
   }
 
-  blogs.push(blog);
-  res.status(200).send(blog);
+  // blogs.push(blog);
+  const newBlog = await blog.save();
+  res.status(200).send(newBlog);
 });
 
-app.put("/api/blogs/:_id", blogUpload.single("img"), (req, res) => {
-  const blog = blogs.find((blog) => blog._id === parseInt(req.params._id));
+app.put("/api/blogs/:_id", blogUpload.single("img"), async(req, res) => {
+  // const blog = blogs.find((blog) => blog._id === parseInt(req.params._id));
 
-  if (!blog) {
-    res.status(404).send("The blog with the provided id was not found");
-    return;
-  }
+  // if (!blog) {
+  //   res.status(404).send("The blog with the provided id was not found");
+  //   return;
+  // }
   const result = validateBlog(req.body);
   if (result.error) {
     res.status(400).send(result.error.details[0].message);
     return;
   }
 
+  
   const formatDate = (isoDateStr) => {
     const [year, month, day] = isoDateStr.split("-");
     return `${month}-${day}-${year}`;
@@ -430,33 +444,42 @@ app.put("/api/blogs/:_id", blogUpload.single("img"), (req, res) => {
 
   const formattedDate = formatDate(req.body.date);
 
-  blog.date = formattedDate;
-  blog.summary = req.body.summary;
+  const feildsToUpdate={
+    date:formattedDate,
+    summary:req.body.summary,
+  }
 
-  console.log("Summary: " + blog.summary);
+
+
+  // console.log("Summary: " + blog.summary);
 
   if (req.file) {
-    blog.image = req.file.filename;
+    feildsToUpdate.image = req.file.filename;
   }
+
+  const wentThrough = await Blog.updateOne({_id:req.params._id}, feildsToUpdate);
+  const blog = await Blog.findOne({_id:req.params._id});
 
   res.status(200).send(blog);
 });
 
-app.delete("/api/blogs/:_id", blogUpload.single("img"), (req, res) => {
-  console.log("I'm trying to delete" + req.params._id);
-  const blog = blogs.find((b) => b._id === parseInt(req.params._id));
-  console.log("made it to here...");
+app.delete("/api/blogs/:_id", blogUpload.single("img"), async(req, res) => {
+  // console.log("I'm trying to delete" + req.params._id);
+  // const blog = blogs.find((b) => b._id === parseInt(req.params._id));
+  // console.log("made it to here...");
 
 
-  if (!blog) {
-    console.log("Oh no i wasn't found");
-    res.status(404).send("The house with the provided id was not found");
-    return;
-  }
-  console.log("YAY You found me");
-  console.log("The blog you are deleting is " + blog.date);
-  const index = blogs.indexOf(blog);
-  blogs.splice(index, 1);
+  // if (!blog) {
+  //   console.log("Oh no i wasn't found");
+  //   res.status(404).send("The house with the provided id was not found");
+  //   return;
+  // }
+  // console.log("YAY You found me");
+  // console.log("The blog you are deleting is " + blog.date);
+  // const index = blogs.indexOf(blog);
+  // blogs.splice(index, 1);
+
+  const blog = await Blog.findByIdAndDelete(req.params._id);
   res.status(200).send(blog);
 });
 
